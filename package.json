@@ -1,0 +1,21 @@
+{
+  "name": "tik-tak-tu",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "postuninstall": "npm prune"
+  },
+  "dependencies": {
+    "@headlessui/vue": "^0.2.0",
+    "fontsource-inter": "^3.0.5",
+    "vue": "^3.0.2",
+    "vue-router": "^4.0.0-rc.2"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.0.2",
+    "tailwindcss": "^1.9.6",
+    "typescript": "^4.0.5",
+    "vite": "^1.0.0-rc.8"
+  }
+}
