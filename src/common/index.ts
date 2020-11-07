@@ -1,7 +1,3 @@
-// Game Difficulties
-export const EASY = 'EZ';
-export const HARD = 'HD';
-
 // Player Characters
 export const CIRCLE = 'O';
 export const CROSS = 'X';
