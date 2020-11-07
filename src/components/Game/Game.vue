@@ -18,6 +18,12 @@ export default defineComponent({
     const { game, turn, winner, state, resetGameState } = useGameState();
     const { toSplash } = useNavigator();
 
+    watch(turn, async (turn) => {
+      if (turn !== player.value && state.value === IN_PROGRESS) {
+        await botMove();
+      }
+    });
+
     // toggle player turns
     const toggleTurn = () => {
       if (turn.value === CROSS) {
@@ -76,12 +82,6 @@ export default defineComponent({
         botMove();
       }
     }
-
-    watch(turn, async (turn) => {
-      if (turn !== player.value && state.value === IN_PROGRESS) {
-        await botMove();
-      }
-    });
 
     resetGame();
 

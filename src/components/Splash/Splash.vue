@@ -74,7 +74,7 @@ export default defineComponent({
         class="twitter text-center px-6 py-2 rounded-md ml-2 flex-1"
         target="_blank"
         rel="noreferrer"
-        href="https://twitter.com/intent/tweet?text=Having%20a%20blast%20playing%20TikTakTu%21%0A%0APlay%20now%3A%20namchee.github.io%2Ftik-tak-tu">
+        href="https://twitter.com/intent/tweet?text=Having%20a%20blast%20playing%20TikTakTu%0A%0APlay%20now%3A%20tik-tak-tu.vercel.app">
         Share on Twitter
       </a>
     </section>
