@@ -1,2 +1,3 @@
 # tik-tak-tu
-MAXSOL Interview App
+
+Simple Tic-Tac-Toe game implemented in Vue.

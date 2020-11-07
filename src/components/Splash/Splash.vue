@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useConfig, useNavigator } from './../../store';
-import { CIRCLE, CROSS, EASY, HARD } from './../../common';
+import { CIRCLE, CROSS } from './../../common';
 
 export default defineComponent({
   name: 'Splash',
