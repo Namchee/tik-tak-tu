@@ -1,38 +1,46 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import {
-  Listbox,
-  ListboxLabel,
-  ListboxButton,
-  ListboxOptions,
-  ListboxOption,
-} from '@headlessui/vue';
-import { NOOB, IMPOSSIBRU } from './../../common';
+import { useConfig, useNavigator } from './../../store';
+import { CIRCLE, CROSS, EASY, HARD } from './../../common';
 
 export default defineComponent({
-  components: {
-    Listbox,
-    ListboxLabel,
-    ListboxButton,
-    ListboxOption,
-    ListboxOptions,
-  },
-
   setup() {
+    const { difficulty, player } = useConfig();
+    const { toGame } = useNavigator();
+
     const difficulties = [
       {
-        name: 'Noob',
-        value: NOOB,
-        desc: 'EZ dude, useful for kiddos alike',
+        name: 'Easy',
+        value: EASY,
+        desc: 'Slide through easily!',
       },
       {
-        name: 'Impossibru',
-        value: IMPOSSIBRU,
-        desc: 'No, you can\'t win this one!'
+        name: 'Hard',
+        value: HARD,
+        desc: 'Challenge yourself!',
       },
     ];
 
+    const players = [
+      {
+        name: 'As Cross',
+        value: CROSS,
+        desc: 'You will start first!'
+      },
+      {
+        name: 'As Circle',
+        value: CIRCLE,
+        desc: 'You will start second!',
+      },
+    ];
 
+    return {
+      difficulty,
+      player,
+      difficulties,
+      players,
+      toGame,
+    };
   },
 });
 </script>
@@ -41,36 +49,62 @@ export default defineComponent({
   <!-- start: Splash Screen -->
   <div>
     <!-- start: Game Configuration -->
-    <section class="text-lg text-center mx-auto max-w-md mb-8">
-      <!-- start: Difficulty Settings -->
-      <div class="flex justify-between items-center mb-4">
-        <p>
+    <section class="flex justify-between text-lg text-center mx-auto max-w-md mb-8">
+      <!-- start: Difficulty Selection -->
+      <div>
+        <h2 class="text-left font-semibold text-xl mb-4">
           Game Difficulty
-        </p>
+        </h2>
 
-        <!-- start: Difficulty Dropdown -->
-        
-        <!-- end: Difficulty Dropdown -->
+        <!-- start: Difficulty Checkbox -->
+        <div>
+          <label class="flex items-center my-2" v-for="difficultyLevel in difficulties" :key="difficultyLevel.value">
+            <input class="form-radio text-secondary w-6 h-6" type="radio" name="difficulty" id="difficulty" :value="difficultyLevel.value" v-model="difficulty" />
+            <div class="text-left text-primary font-medium ml-4">
+              <p>
+                {{ difficultyLevel.name }}
+              </p>
+
+              <p class="text-sm text-gray-500">
+                {{ difficultyLevel.desc }}
+              </p>
+            </div>
+          </label>
+        </div>
+        <!-- end: Difficulty Checkbox -->
       </div>
-      <!-- end: Difficulty Settings -->
+      <!-- end: Difficulty Selection -->
 
-      <!-- start: Play As Select -->
-      <div class=" flex justify-between items-center">
-        <p>
+      <!-- start: Player Selection -->
+      <div>
+        <h2 class="text-left font-semibold text-xl mb-4">
           Play As
-        </p>
+        </h2>
 
-        <!-- start: Play As Dropdown -->
-        
-        <!-- end: Play As Dropdown -->
+        <!-- start: Difficulty Checkbox -->
+        <div>
+          <label class="flex items-center my-2" v-for="playerChar in players" :key="playerChar.value">
+            <input class="form-radio text-teal-400 w-6 h-6" type="radio" name="player" id="player" :value="playerChar.value" v-model="player" />
+            <div class="text-left text-primary font-medium ml-4">
+              <p>
+                {{ playerChar.name }}
+              </p>
+
+              <p class="text-sm text-gray-500">
+                {{ playerChar.desc }}
+              </p>
+            </div>
+          </label>
+        </div>
+        <!-- end: Difficulty Checkbox -->
       </div>
-      <!-- end: Play As Select -->
+      <!-- end: Player Selection -->
     </section>
     <!-- end: Game Configuration -->
 
     <!-- start: Game Controls -->
     <section class="flex justify-between mx-auto max-w-md">
-      <button class="text-center px-6 py-2 bg-secondary text-white rounded-md mr-2 flex-1">
+      <button @click="toGame" class="text-center px-6 py-2 bg-secondary text-white rounded-md mr-2 flex-1">
         Start
       </button>
       

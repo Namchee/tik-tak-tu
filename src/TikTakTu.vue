@@ -1,4 +1,16 @@
 <script lang="ts">
+import { defineComponent } from 'vue';
+import { useNavigator } from './store';
+
+export default defineComponent({
+  setup() {
+    const { currentPage } = useNavigator();
+
+    return {
+      currentPage,
+    };
+  },
+});
 </script>
 
 <template>
@@ -13,9 +25,9 @@
     </header>
     <!-- end: Badass Heading -->
 
-    <!-- start: Router View -->
-    <router-view />
-    <!-- end: Router View -->
+    <!-- start: Pseudo Router -->
+    <component :is="currentPage" />
+    <!-- end: Pseudo Router -->
   </main>
 </template>
 
